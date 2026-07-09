@@ -45,10 +45,6 @@ print(f"Total de caracteres: {len(recetas_texto)}")
 print("\nVista previa del contenido extraído:\n")
 print(recetas_texto[:800])
 
-"""> ⚠️ Si la "vista previa" salió vacía o con símbolos raros, es porque tu PDF
-> es un PDF escaneado (imágenes) y no texto real. En ese caso avísame y usamos
-> otra técnica (OCR) para extraerlo.
-
 ## 4. Configuramos la API Key de Gemini
 """
 
