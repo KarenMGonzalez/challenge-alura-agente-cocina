@@ -148,7 +148,7 @@ demo = gr.ChatInterface(
     examples=[
         "¿Qué recetas tienes disponibles?",
         "Explícame paso a paso la primera receta",
-        "¿Con qué puedo reemplazar la mantequilla?",
+        "¿Cuál es la receta más sencilla de preparar?",
     ],
 )
 
