@@ -144,7 +144,7 @@ import gradio as gr
 demo = gr.ChatInterface(
     fn=chatear_con_agente,
     title="🍳 Chef IA - Tu asistente de recetas",
-    description="Pregúntame sobre cualquier receta del PDF que subiste: ingredientes, pasos, tiempos, sustitutos, etc.",
+    description="Pregúntame sobre el recetario que tengo a mano: ingredientes, pasos, tiempos, sustitutos, etc.",
     examples=[
         "¿Qué recetas tienes disponibles?",
         "Explícame paso a paso la primera receta",
