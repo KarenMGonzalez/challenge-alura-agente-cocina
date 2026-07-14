@@ -97,6 +97,8 @@ def extraer_texto(contenido):
     return str(contenido)
 
 
+from google.genai import errors as genai_errors
+
 def chatear_con_agente(mensaje, historial):
     """
     mensaje: texto que escribió el usuario ahora
@@ -116,16 +118,20 @@ def chatear_con_agente(mensaje, historial):
 
     contenidos.append(types.Content(role="user", parts=[types.Part(text=extraer_texto(mensaje))]))
 
-    respuesta = client.models.generate_content(
-        model=MODEL,
-        contents=contenidos,
-        config=types.GenerateContentConfig(
-            system_instruction=INSTRUCCIONES_SISTEMA,
-            temperature=0.4,
-        ),
-    )
-
-    return respuesta.text
+    try:
+        respuesta = client.models.generate_content(
+            model=MODEL,
+            contents=contenidos,
+            config=types.GenerateContentConfig(
+                system_instruction=INSTRUCCIONES_SISTEMA,
+                temperature=0.4,
+            ),
+        )
+        return respuesta.text
+    except genai_errors.ClientError:
+        return "⚠️ Se alcanzó el límite de uso gratuito de la API por ahora. Por favor esperá un minuto e intentá de nuevo."
+    except genai_errors.ServerError:
+        return "⚠️ El modelo está temporalmente saturado por alta demanda. Intentá de nuevo en unos segundos."
 
 print("Función de chat lista ✅")
 
