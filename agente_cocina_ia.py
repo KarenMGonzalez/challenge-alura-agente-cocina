@@ -13,7 +13,6 @@ sobre ellas (explicar una receta, sugerir sustitutos de ingredientes, adaptar ca
 
 ## 1. Instalamos dependencias
 """
-
  # !pip install -q -U google-genai gradio pypdf
  # print("Listo ✅")
 
@@ -52,11 +51,14 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 MODEL = "gemini-2.5-flash"
 
 # Prueba rápida para confirmar que la key funciona
-test = client.models.generate_content(model=MODEL, contents="Responde solo con: conexión exitosa")
-print(test.text)
-
+try:
+    test = client.models.generate_content(model=MODEL, contents="Responde solo con: conexión exitosa")
+    print(test.text)
+except Exception as e:
+    print(f"⚠️ No se pudo hacer la prueba de conexión (probablemente por límite de cuota): {e}")
+    print("Continuando de todas formas, el agente puede funcionar igual una vez que la cuota se libere.")
+    
 ## 5. Definimos el "cerebro" del agente
-
 INSTRUCCIONES_SISTEMA = f"""Eres un asistente de cocina experto y amigable.
 Tu única fuente de recetas es el siguiente documento (extraído de un PDF).
 Cuando el usuario pregunte por una receta, ingredientes, pasos, tiempos de cocción,
@@ -76,7 +78,6 @@ que recién está aprendiendo a cocinar.
 print(f"Instrucciones del sistema listas ({len(INSTRUCCIONES_SISTEMA)} caracteres).")
 
 ## 6. Función de chat (conecta Gradio con Gemini)
-
 from google.genai import types
 
 def extraer_texto(contenido):
