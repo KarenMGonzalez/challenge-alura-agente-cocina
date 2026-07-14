@@ -91,7 +91,7 @@ http://163.176.204.171:7860
 
 **Captura de pantalla del agente funcionando:**
 
-![Chef IA - Agente de cocina funcionando](<img width="1881" height="845" alt="Prueba_AgenteIA_1" src="https://github.com/user-attachments/assets/593c3b3e-ea96-4a10-8696-810118d8f3ac" />
+![Chef IA - Agente de cocina funcionando](<img width="1881" height="845" alt="Prueba_AgenteIA_1" src="https://github.com/user-attachments/assets/eb390088-354f-4e58-8905-68d2f32a53a1" />
 )
 
 *(Captura del agente respondiendo preguntas sobre el recetario en la interfaz de Gradio desplegada en OCI)*
