@@ -14,20 +14,16 @@ sobre ellas (explicar una receta, sugerir sustitutos de ingredientes, adaptar ca
 ## 1. Instalamos dependencias
 """
 
-!pip install -q -U google-genai gradio pypdf
-print("Listo ✅")
+ # !pip install -q -U google-genai gradio pypdf
+ # print("Listo ✅")
 
 """## 2. Subimps el PDF de recetas
 
 Al correr esta celda, se observará un botón para elegir el archivo desde la computadora.
 """
 
-from google.colab import files
-
-print("Selecciona tu PDF de recetas...")
-uploaded = files.upload()
-pdf_filename = list(uploaded.keys())[0]
-print(f"\n✅ Archivo subido: {pdf_filename}")
+pdf_filename = "RECETARIO OFICIAL - ASISTENTE DE COCINA IA.pdf"
+print(f"\n✅ Usando archivo: {pdf_filename}")
 
 """## 3. Extraer el texto del PDF"""
 
@@ -46,12 +42,11 @@ print("\nVista previa del contenido extraído:\n")
 print(recetas_texto[:800])
 
 ## 4. Configuramos la API Key de Gemini
-"""
 
-from google.colab import userdata
+import os
 from google import genai
 
-GEMINI_API_KEY = userdata.get("GEMINI_API_KEY")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 MODEL = "gemini-2.5-flash"
@@ -60,10 +55,7 @@ MODEL = "gemini-2.5-flash"
 test = client.models.generate_content(model=MODEL, contents="Responde solo con: conexión exitosa")
 print(test.text)
 
-"""## 5. Definimos el "cerebro" del agente
-
-Aquí le decimos a Gemini que es un chef experto y le damos el contenido del PDF como su única fuente de recetas.
-"""
+## 5. Definimos el "cerebro" del agente
 
 INSTRUCCIONES_SISTEMA = f"""Eres un asistente de cocina experto y amigable.
 Tu única fuente de recetas es el siguiente documento (extraído de un PDF).
@@ -83,7 +75,7 @@ que recién está aprendiendo a cocinar.
 
 print(f"Instrucciones del sistema listas ({len(INSTRUCCIONES_SISTEMA)} caracteres).")
 
-"""## 6. Función de chat (conecta Gradio con Gemini)"""
+## 6. Función de chat (conecta Gradio con Gemini)
 
 from google.genai import types
 
@@ -152,4 +144,4 @@ demo = gr.ChatInterface(
     ],
 )
 
-demo.launch(debug=True)
+demo.launch(server_name="0.0.0.0", server_port=7860)
