@@ -158,44 +158,12 @@ Running on local URL:  http://0.0.0.0:7860
 
 ---
 
-## 🗨️ Ejemplos de respuestas generadas por el agente
+## 🗨️ Ejemplos de respuestas generadas por el agente en diferentes situaciones
 
-**Pregunta:** *¿Cuál es la receta más sencilla de preparar?*
-
-> ¡Hola! Como tu asistente de cocina, puedo decirte que la receta más sencilla de preparar de nuestro recetario es la **Ensalada Saludable de Garbanzos y Aguacate**.
->
-> Está clasificada como "Muy Fácil" y solo te tomará 10 minutos prepararla. ¡Es perfecta si buscas algo rápido y sin complicaciones!
->
-> ¿Te gustaría que te diera los ingredientes y los pasos para prepararla?
-
-**Pregunta:** *Explícame paso a paso la primera receta*
-
-> La primera receta del recetario es **Pollo al Horno con Patatas y Romero**, un plato fuerte de dificultad fácil que toma 50 minutos en total.
->
-> **Ingredientes:**
-> 1. 4 piezas de muslo o pechuga de pollo
-> 2. 3 patatas grandes
-> 3. 1 cebolla
-> 4. 2 dientes de ajo
-> 5. 2 ramas de romero fresco
-> 6. 3 cucharadas de aceite de oliva
-> 7. Sal y pimienta al gusto
->
-> **Pasos:**
-> 1. Precalentar el horno a 200°C.
-> 2. Pelar las patatas y cortarlas en rodajas gruesas. Cortar la cebolla en juliana.
-> 3. Colocar las patatas y la cebolla en una bandeja para horno formando una cama.
-> 4. Colocar el pollo encima de los vegetales y salpimentar todo.
-> 5. Continuar con los pasos restantes indicados en el recetario para completar la cocción.
-
-**Pregunta fuera del recetario:** *Hablemos de fútbol*
-
-> ¡Ah, fútbol! Es un tema muy interesante, pero como tu asistente de cocina, mi especialidad son las recetas y todo lo relacionado con la cocina.
->
-> No tengo información sobre fútbol en mi recetario, pero si te gustaría volver a hablar de alguna de nuestras deliciosas recetas, ¡estaré encantado de ayudarte!
->
-> ¿Hay alguna otra receta que te interese o alguna duda culinaria que tengas?
-
+Ejemplo 1: (screenshots/Prueba_AgenteIA_2.png)
+Ejemplo 2: (screenshots/Prueba_AgenteIA_3.png)
+Ejemplo 3: (screenshots/Prueba_AgenteIA_4.png)
+Ejemplo 4: (screenshots/Prueba_AgenteIA_5.png)
 ---
 
 ## ⚠️ Manejo de errores
