@@ -51,6 +51,7 @@ Usuario (navegador)
 2. Ese texto se inyecta como parte de las instrucciones de sistema (`system_instruction`) que recibe Gemini, convirtiéndolo en la única fuente de recetas del agente.
 3. Cada vez que el usuario escribe un mensaje en la interfaz de Gradio, el historial de la conversación se convierte al formato que espera la API de Gemini y se envía junto con el nuevo mensaje.
 4. Gemini genera una respuesta basada en el documento, que se muestra en el chat.
+5. El proceso se ejecuta en segundo plano en la instancia (ver sección "Ejecución persistente"), de modo que la URL pública queda disponible de forma continua, sin depender de una sesión SSH activa.
 
 ### Infraestructura de despliegue (OCI)
 
@@ -64,6 +65,7 @@ Usuario (navegador)
 | Security List | Regla de ingreso TCP puerto `7860` abierta a `0.0.0.0/0` |
 | Firewall interno | `firewalld` con puerto `7860/tcp` habilitado |
 | Shielded Instance | Activado (protección de arranque UEFI seguro + vTPM) |
+| Ejecución | Proceso en segundo plano con `nohup`, persiste tras cerrar la sesión SSH |
 
 ---
 
@@ -81,13 +83,13 @@ Usuario (navegador)
 
 ## ☁️ Evidencia del Deploy en OCI
 
-El agente fue desplegado exitosamente en una instancia de Oracle Cloud Infrastructure (OCI) y se encuentra funcionando en la nube.
+El agente fue desplegado exitosamente en una instancia de Oracle Cloud Infrastructure (OCI) y se encuentra funcionando en la nube **de forma persistente** (el proceso corre en segundo plano con `nohup`, por lo que permanece activo aunque se cierre la sesión SSH).
 
 **Enlace público de la aplicación:**
 
 http://163.176.204.171:7860
 
-> ⚠️ **Nota:** el enlace estará disponible únicamente mientras la instancia de OCI esté encendida y el proceso del agente (`agente_cocina_ia.py`) esté corriendo activamente en el servidor. Si el enlace no responde, revisá la sección "Instrucciones para ejecutar el proyecto" para levantarlo en tu propio entorno.
+> ⚠️ **Nota:** el enlace estará disponible mientras la instancia de OCI permanezca encendida. Si en algún momento no responde, revisá la sección "Instrucciones para ejecutar el proyecto" para levantarlo nuevamente en la instancia o en tu propio entorno.
 
 **Captura de pantalla del agente funcionando:**
 
@@ -131,13 +133,40 @@ export GEMINI_API_KEY="tu_api_key_aqui"      # En Windows (PowerShell): $env:GEM
 Asegurate de que el archivo PDF esté en la misma carpeta que `agente_cocina_ia.py`, con el nombre exacto configurado en la variable `pdf_filename` del script.
 
 ### 6. Ejecutar el agente
+
+**Modo simple (en primer plano, para pruebas locales):**
 ```bash
 python3 agente_cocina_ia.py
 ```
-
 Vas a ver un mensaje como:
 ```
 Running on local URL:  http://0.0.0.0:7860
+```
+
+**Modo persistente (recomendado para un servidor/instancia en la nube):**
+
+Para que el agente siga corriendo aunque se cierre la sesión de terminal (SSH), se ejecuta en segundo plano con `nohup`:
+```bash
+nohup python3 agente_cocina_ia.py > salida.log 2>&1 &
+```
+Esto:
+- Deja el proceso corriendo en segundo plano, aunque se cierre la terminal.
+- Redirige toda la salida (logs y errores) al archivo `salida.log`.
+
+Para verificar que arrancó correctamente:
+```bash
+cat salida.log
+```
+
+Para confirmar que el proceso sigue activo:
+```bash
+ps aux | grep agente_cocina_ia
+```
+
+Para detener el proceso cuando sea necesario:
+```bash
+ps aux | grep agente_cocina_ia   # identificar el PID (número de proceso)
+kill <PID>
 ```
 
 ### 7. Acceder a la interfaz
@@ -158,7 +187,7 @@ Running on local URL:  http://0.0.0.0:7860
 
 ---
 
-## 🗨️ Ejemplos de respuestas generadas por el agente en diferentes situaciones ##
+## 🗨️ Ejemplos de respuestas generadas por el agente en diferentes situaciones
 
 **Ejemplo 1:**
 ![Ejemplo 1](screenshots/Prueba_AgenteIA_2.png)
@@ -187,4 +216,4 @@ Esto evita que la conversación se interrumpa abruptamente ante errores temporal
 
 ## 👩‍💻 Autora
 
-**Karen M. González** — Challenge Alura: Agente Inteligente Funcional
+**Karen Macarena González** — Challenge Alura: Agente Inteligente Funcional
