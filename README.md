@@ -181,7 +181,6 @@ kill <PID>
 - Explícame paso a paso la primera receta
 - ¿Cuál es la receta más sencilla de preparar?
 - ¿Qué ingredientes necesito para el Pollo al Horno con Patatas y Romero?
-- ¿Puedo sustituir el romero fresco por otra especia?
 - ¿Cuánto tiempo total toma preparar esa receta?
 - ¿Tienes alguna receta vegetariana en el recetario?
 
