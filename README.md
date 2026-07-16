@@ -160,10 +160,17 @@ Running on local URL:  http://0.0.0.0:7860
 
 ## 🗨️ Ejemplos de respuestas generadas por el agente en diferentes situaciones ##
 
-Ejemplo 1: (screenshots/Prueba_AgenteIA_2.png)
-Ejemplo 2: (screenshots/Prueba_AgenteIA_3.png)
-Ejemplo 3: (screenshots/Prueba_AgenteIA_4.png)
-Ejemplo 4: (screenshots/Prueba_AgenteIA_5.png)
+**Ejemplo 1:**
+![Ejemplo 1](screenshots/Prueba_AgenteIA_2.png)
+
+**Ejemplo 2:**
+![Ejemplo 2](screenshots/Prueba_AgenteIA_3.png)
+
+**Ejemplo 3:**
+![Ejemplo 3](screenshots/Prueba_AgenteIA_4.png)
+
+**Ejemplo 4:**
+![Ejemplo 4](screenshots/Prueba_AgenteIA_5.png)
 
 ---
 
